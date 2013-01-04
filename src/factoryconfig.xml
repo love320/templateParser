@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<beans>
+    <description>factory</description>
+    
+    <bean id="factory" >
+    	<property name="cache">
+			<ref bean="cache" />
+		</property>
+    </bean>
+    
+    <bean id="factoryService" class="com.love320.templateparser.factory.impl.FactoryServiceImpl"></bean>
+    
+    <!-- 工厂缓存 -->
+    <bean id="cache" class="com.love320.templateparser.cache.impl.SysCache"></bean>
+    
+    <bean id="ehcacheFactory" class="com.love320.templateparser.cache.impl.EhcacheFactory"></bean>
+    
+    <!-- bean工厂 -->
+    <bean id="beanfactory" class="com.love320.templateparser.factory.impl.BeanFactoryCacheImpl">
+    	<property name="cache">
+    		<ref bean="cache" />
+    	</property>
+    </bean>
+    
+    <!-- logger日志 -->
+    <bean id="logger" class="com.love320.templateparser.log.impl.LoggerImpl"></bean>
+    
+    <!-- 模板解析 -->
+	<bean id="templateProcess" class="com.love320.templateparser.templateprocess.impl.TemplateProcessImpl">
+		<property name="fileToString">
+			<ref bean="fileToString" />
+		</property>
+		<property name="separation">
+			<ref bean="separation" />
+		</property>
+		<property name="xmlToLabel">
+			<ref bean="xmlToLabel" />
+		</property>
+		<property name="labelParser">
+			<ref bean="labelParser" />
+		</property>
+		<property name="templateDir">
+			<value></value>
+		</property>
+	</bean>
+	
+	<bean id="fileToString" class="com.love320.templateparser.io.impl.FileToStringImpl" />
+	<bean id="separation" class="com.love320.templateparser.templateprocess.impl.SeparationImpl" >
+		<property name="tagNamehead">
+			<value>love320_</value>
+		</property>
+		<property name="tagNamefoot">
+			<value>/</value>
+		</property>
+	</bean>
+	<bean id="xmlToLabel" class="com.love320.templateparser.label.impl.XMLToLabelImpl" />
+	<bean id="labelParser" class="com.love320.templateparser.label.impl.LabelParserImpl" >
+		<property name="labelProcess">
+			<ref bean="labelProcess" />
+		</property>
+	</bean>
+	<bean id="labelProcess" class="com.love320.templateparser.label.impl.LabelProcessImpl" >
+		<property name="labelBeanFactory">
+			<ref bean="labelBeanFactory" />
+		</property>
+		<property name="factoryService">
+			<ref bean="factoryService" />
+		</property>
+		<property name="synthesis">
+			<ref bean="synthesis" />
+		</property>
+	</bean>
+	<bean id="labelBeanFactory" class="com.love320.templateparser.factory.impl.LabelBeanFactoryImpl" >
+		<property name="labelBeanDao">
+			<ref bean="labelBeanDao" />
+		</property>
+	</bean>
+	<bean id="labelBeanDao" class="com.love320.templateparser.label.impl.LabelBeanDaoImpl">
+		<property name="configPath">
+			<value>labelbeanconfig.xml</value>
+		</property>
+	</bean>
+	
+	<bean id="synthesis" class="com.love320.templateparser.label.synthesis.impl.SynthesisFreeMarker" />
+	
+    <!-- 模板解析 end -->
+    
+    <!-- Label bean -->
+
+	<bean id="testAction" class="com.love320.templateparser.label.action.TestAction"  scope="singleton" /> <!-- prototype -->
+	
+	<bean id="testAbsAction" class="com.love320.templateparser.label.action.TestAbsAction"  scope="prototype" /> <!-- prototype -->
+	 <!-- Label bean end -->
+   
+</beans>

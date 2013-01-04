@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!-- 扩展配置文件, 默认继承系统配置文件  -->
+<beans>
+    <!-- 工厂缓存 -->
+    <bean id="cache" class="com.love320.templateparser.cache.impl.SysCache"></bean>
+
+	<bean id="labelProcess" class="com.love320.templateparser.label.impl.LabelProcessImpl" >
+		<property name="labelBeanFactory">
+			<ref bean="labelBeanFactory" />
+		</property>
+		<property name="factoryService">
+			<ref bean="factoryService" />
+		</property>
+		<property name="synthesis">
+			<ref bean="synthesis" />
+		</property>
+	</bean>
+    
+    <!-- Label bean -->
+
+
+
+    <!-- Label bean end -->
+    
+    <!-- 以下为测试用 -->
+
+	<bean id="test2" class="test.test2"></bean>
+	
+	<bean id="a" class="test.A">
+		<property name="c">
+			<ref bean="cc" />
+		</property>
+		<property name="b">
+			<ref bean="b" />
+		</property>
+		<property name="acsdkfei">
+			<ref bean="acateols" />
+		</property>
+		
+		<property name="cacheName">
+            <value>localSessionCache</value>
+        </property>		
+        <property name="intk">
+        	<value>152</value>
+        </property>
+	</bean>
+	
+	<bean id="acateols" class="test.Acateols"></bean>
+	
+	<bean id="b" class="test.B"  scope="prototype">
+		<property name="c">
+			<ref bean="cc" />
+		</property>
+	</bean>
+	
+	<bean id="cc" class="test.C"  scope="singleton" /> <!-- prototype -->
+	
+	<bean id="csdsc" class="test.C"  scope="prototype" /> <!-- prototype -->
+	
+	<bean id="error" class="test.error"  scope="singleton" /> <!-- prototype -->
+   
+   <!-- 以下为测试用 end -->
+   
+</beans>
