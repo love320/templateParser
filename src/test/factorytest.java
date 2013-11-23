@@ -149,12 +149,12 @@ public class factorytest extends TestCase {
 		Factory factory = appfactory.getFactory();
 		TemplateProcess templateProcess = (TemplateProcess)factory.getbean("templateProcess");
 		
-		//SystemMap.DATA.put("zhangdi", "中国人>.s");
+		SystemMap.DATA.put("zhangdi", "中国人>.s");
 		
-		//String temp = templateProcess.get("bin/homepage.htm",SystemMap.DATA);
-		//System.out.println(temp);
+		String temp = templateProcess.get("bin/homepage.htm",SystemMap.DATA);
+		System.out.println(temp);
 		
-		factory.getbean("error");
+		//factory.getbean("error");
 		Log.LOGGER.info("zhanisd", this);
 	}
 }
