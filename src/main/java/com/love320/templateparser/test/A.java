@@ -5,7 +5,7 @@
  * 
  * Founder admin@love320.com
  */
-package com.love320.templateparser;
+package com.love320.templateparser.test;
 
 public class A {
 	private B b;

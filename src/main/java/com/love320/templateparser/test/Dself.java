@@ -1,4 +1,4 @@
-package com.love320.templateparser;
+package com.love320.templateparser.test;
 
 public class Dself {
 	public void get(){

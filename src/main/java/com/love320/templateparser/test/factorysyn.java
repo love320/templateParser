@@ -5,10 +5,11 @@
  * 
  * Founder admin@love320.com
  */
-package com.love320.templateparser;
+package com.love320.templateparser.test;
 
 import com.love320.templateparser.factory.AppFactory;
 import com.love320.templateparser.factory.Factory;
+
 
 /** 
  * @ClassName: factorysyn 

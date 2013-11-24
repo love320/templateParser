@@ -5,7 +5,7 @@
  * 
  * Founder admin@love320.com
  */
-package com.love320.templateparser;
+package com.love320.templateparser.test;
 
 import java.io.File;
 import java.util.List;
