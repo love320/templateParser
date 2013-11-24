@@ -5,7 +5,7 @@
  * 
  * Founder admin@love320.com
  */
-package test;
+package com.love320.templateparser;
 
 /** 
  * @ClassName: AgoB 

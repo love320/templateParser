@@ -5,7 +5,7 @@
  * 
  * Founder admin@love320.com
  */
-package test;
+package com.love320.templateparser;
 
 import java.io.File;
 import java.util.List;
@@ -38,7 +38,7 @@ public class factorytest extends TestCase {
 		appfactory.setConPath("Xconfig.xml");
 		
 		Factory factory = appfactory.getFactory();
-		test.A a = (A)factory.getbean("a");
+		A a = (A)factory.getbean("a");
 		System.out.println(">>>>>");
 		a.print();
 		a.getC().print();
