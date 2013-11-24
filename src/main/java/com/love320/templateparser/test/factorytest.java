@@ -8,6 +8,7 @@
 package com.love320.templateparser.test;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.util.List;
 
 import junit.framework.TestCase;
@@ -18,6 +19,7 @@ import com.love320.templateparser.factory.entity.LabelBean;
 import com.love320.templateparser.label.LabelBeanDao;
 import com.love320.templateparser.templateprocess.TemplateProcess;
 import com.love320.templateparser.user.bean.SystemMap;
+import com.love320.templateparser.util.AppPath;
 import com.love320.templateparser.util.Log;
 
 public class factorytest extends TestCase {
@@ -151,7 +153,7 @@ public class factorytest extends TestCase {
 		
 		SystemMap.DATA.put("zhangdi", "中国人>.s ");
 		
-		String temp = templateProcess.get("bin/homepage.htm",SystemMap.DATA);
+		String temp = templateProcess.get(new File("").getAbsolutePath()+"/target/classes/homepage.htm",SystemMap.DATA);
 		System.out.println(temp);
 		
 		//factory.getbean("error");
