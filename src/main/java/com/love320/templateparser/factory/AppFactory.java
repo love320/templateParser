@@ -14,6 +14,7 @@ import org.dom4j.io.SAXReader;
 import com.love320.templateparser.factory.entity.BeanString;
 import com.love320.templateparser.factory.impl.FactoryBeanImpl;
 import com.love320.templateparser.util.ConfigBeanXML;
+import com.love320.templateparser.util.FileUtil;
 
 public class AppFactory {
 	
@@ -41,7 +42,7 @@ public class AppFactory {
 	private void xmlStr(){
 		SAXReader sax = new SAXReader();
 		try {
-			Document document= sax.read(conPath[0]);
+			Document document= sax.read(FileUtil.get(conPath[0]));
 			DOCROOT = document.getRootElement();
 		} catch (DocumentException e) {
 			e.printStackTrace();

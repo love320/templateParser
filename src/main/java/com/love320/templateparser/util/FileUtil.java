@@ -18,7 +18,7 @@ public class FileUtil {
 	}
 	
 	public static InputStream get(String path) {
-		File file = new File(AppPath.PATH+path);  
+		File file = new File(AppPath.path()+path);  
         FileInputStream fis;
 		try {
 			fis = new FileInputStream(file);

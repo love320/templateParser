@@ -9,6 +9,7 @@ package com.love320.templateparser;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,6 +26,7 @@ import com.love320.templateparser.util.AppPath;
 import com.love320.templateparser.util.Log;
 
 public class factorytest extends TestCase {
+	
 	public void testsysprintln(){
 		System.out.println("go");
 		Thread.currentThread().getContextClassLoader().getResource("");
@@ -35,6 +37,12 @@ public class factorytest extends TestCase {
 		System.out.println(new File("").getAbsolutePath());
 		System.out.println(System.getProperty("user.dir"));
 		System.out.println(this.getClass().getResourceAsStream("/"));
+		
+		String url = factorytest.class.getResource("/")+"Xconfig.xml";
+		System.out.println(url);
+		String path = url.substring(6, url.length());
+		System.out.println(path);
+		System.out.println("path:"+path.replace('/','\\'));
 	}
 	
 	public void testobect(){
@@ -164,13 +172,13 @@ public class factorytest extends TestCase {
 	
 	public void testTheMap(){
 		AppFactory appfactory = AppFactory.getAppFactory();
-		//appfactory.setConPath("Xconfig.xml",null);//指定配置文件
+		appfactory.setConPath("Xconfig.xml",null);//指定配置文件
 		Factory factory = appfactory.getFactory();
 		TemplateProcess templateProcess = (TemplateProcess)factory.getbean("templateProcess");
 		Map themap = new HashMap<String,Object>();
 		themap.put("thelist", "1 ");
 		SystemMap.DATA.put("zhangdi", "中国人>.s ");
-		String temp = templateProcess.get(new File("").getAbsolutePath()+"/target/test-classes/homepage.htm",themap);
+		String temp = templateProcess.get(AppPath.path()+"homepage.htm",themap);
 		System.out.println(temp);
 		
 	}

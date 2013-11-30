@@ -54,7 +54,7 @@ public class LabelBeanDaoImpl implements LabelBeanDao {
 	}
 	
 	protected String appPath(String confpath){
-		return AppPath.PATH+confpath;
+		return AppPath.path()+confpath;
 	}
 	
 	//获取Element对象

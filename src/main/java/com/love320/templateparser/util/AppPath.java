@@ -8,6 +8,7 @@
 package com.love320.templateparser.util;
 
 import java.io.InputStream;
+import java.net.URL;
 
 import com.love320.templateparser.factory.AppFactory;
 
@@ -19,5 +20,21 @@ import com.love320.templateparser.factory.AppFactory;
  *  应用运行的路径
  */
 public class AppPath {
-	public static String PATH = AppPath.class.getResource("/").toString();
+	private static URL URL = AppPath.class.getResource("/");
+	
+	public static String path(){
+		return APPath();
+	}
+	
+	//APP
+	public static String APPath(){
+		String url = URL.toString();
+		String path = url.substring(6, url.length());
+		return path.replace('/','\\');
+	}
+	
+	//WEB
+	public static String WebPath(){
+		return null;
+	}
 }
