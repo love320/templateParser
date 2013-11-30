@@ -5,11 +5,10 @@
  * 
  * Founder admin@love320.com
  */
-package com.love320.templateparser.test;
+package com.love320.templateparser;
 
-public class C {
-	public void print(){
-		System.out.println("goC"); 
+public class Acateols {
+	public void privasdf(){
+		System.out.println("Acateols");
 	}
-	
 }

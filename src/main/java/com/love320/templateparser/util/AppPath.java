@@ -7,6 +7,8 @@
  */
 package com.love320.templateparser.util;
 
+import java.io.InputStream;
+
 import com.love320.templateparser.factory.AppFactory;
 
 /** 

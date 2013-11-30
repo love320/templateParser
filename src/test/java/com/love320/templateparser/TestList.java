@@ -1,4 +1,4 @@
-package com.love320.templateparser.test;
+package com.love320.templateparser;
 
 import java.util.ArrayList;
 import java.util.List;

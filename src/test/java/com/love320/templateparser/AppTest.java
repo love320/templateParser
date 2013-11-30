@@ -1,4 +1,4 @@
-package com.love320.templateparser.test;
+package com.love320.templateparser;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

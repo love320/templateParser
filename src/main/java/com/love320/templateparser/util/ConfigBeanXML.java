@@ -7,6 +7,7 @@
  */
 package com.love320.templateparser.util;
 
+import java.io.InputStream;
 import java.util.Iterator;
 import java.util.List;
 
@@ -26,13 +27,13 @@ public class ConfigBeanXML {
 
 	public static Element action(String config, String... paths) {
 		Document document = null;
-		document = getXML(AppPath.PATH + config);//主配置文件
+		document = getXML(FileUtil.getJar(config));//主配置文件
 
 		// 以第一个为首配置文件整理后面的所有配置文件
 		if(paths != null){
 			for (String path : paths) {
 				if (path != null) {
-					document = merger(document, getXML(AppPath.PATH + path));// 一个个整理配置文件
+					document = merger(document, getXML(FileUtil.get(path)));// 一个个整理配置文件
 				}
 			}
 		}
@@ -73,11 +74,11 @@ public class ConfigBeanXML {
 	}
 	
 	// 获取xml
-	private static Document getXML(String path) {
+	private static Document getXML(InputStream is) {
 		SAXReader sax = new SAXReader();
 		Document document = null;
 		try {
-			document = sax.read(path);// 读取
+			document = sax.read(is);// 读取
 		} catch (DocumentException e) {
 			e.printStackTrace();
 		}

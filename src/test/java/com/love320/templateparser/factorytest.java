@@ -5,11 +5,13 @@
  * 
  * Founder admin@love320.com
  */
-package com.love320.templateparser.test;
+package com.love320.templateparser;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import junit.framework.TestCase;
 
@@ -158,5 +160,18 @@ public class factorytest extends TestCase {
 		
 		//factory.getbean("error");
 		Log.LOGGER.info("zhanisd", this);
+	}
+	
+	public void testTheMap(){
+		AppFactory appfactory = AppFactory.getAppFactory();
+		//appfactory.setConPath("Xconfig.xml",null);//指定配置文件
+		Factory factory = appfactory.getFactory();
+		TemplateProcess templateProcess = (TemplateProcess)factory.getbean("templateProcess");
+		Map themap = new HashMap<String,Object>();
+		themap.put("thelist", "1 ");
+		SystemMap.DATA.put("zhangdi", "中国人>.s ");
+		String temp = templateProcess.get(new File("").getAbsolutePath()+"/target/test-classes/homepage.htm",themap);
+		System.out.println(temp);
+		
 	}
 }
