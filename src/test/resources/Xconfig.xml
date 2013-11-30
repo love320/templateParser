@@ -24,7 +24,7 @@
     
     <!-- 以下为测试用 -->
 
-	<bean id="test2" class="com.love320.templateparser.abcd.Test2"></bean>
+	<bean id="test2" class="com.love320.templateparser.abcd.Txest2"></bean>
 	
 	<bean id="a" class="com.love320.templateparser.abcd.A">
 		<property name="c">

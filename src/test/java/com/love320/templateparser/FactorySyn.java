@@ -18,7 +18,7 @@ import com.love320.templateparser.factory.Factory;
  * @date 2012-4-15 下午11:18:02 
  *  
  */
-public class factorysyn implements Runnable{
+public class FactorySyn implements Runnable{
 
 	/* (non-Javadoc)
 	 * @see java.lang.Runnable#run()
@@ -44,7 +44,7 @@ public class factorysyn implements Runnable{
 	 */
 	public static void main(String[] args) {
 
-		factorysyn mt=new factorysyn();
+		FactorySyn mt=new FactorySyn();
 	        //基于火车票创建三个窗口
 	       /* new Thread(mt,"a").start();
 	        new Thread(mt,"b").start();

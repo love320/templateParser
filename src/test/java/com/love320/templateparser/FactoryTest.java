@@ -26,20 +26,20 @@ import com.love320.templateparser.user.bean.SystemMap;
 import com.love320.templateparser.util.AppPath;
 import com.love320.templateparser.util.Log;
 
-public class factorytest extends TestCase {
+public class FactoryTest extends TestCase {
 	
 	public void testsysprintln(){
 		System.out.println("go");
 		Thread.currentThread().getContextClassLoader().getResource("");
-		System.out.println(factorytest.class.getClassLoader().getResource(""));
+		System.out.println(FactoryTest.class.getClassLoader().getResource(""));
 		System.out.println(ClassLoader.getSystemResource(""));
-		System.out.println(factorytest.class.getResource("factorytest.config"));
-		System.out.println(factorytest.class.getResource("/"));
+		System.out.println(FactoryTest.class.getResource("FactoryTest.config"));
+		System.out.println(FactoryTest.class.getResource("/"));
 		System.out.println(new File("").getAbsolutePath());
 		System.out.println(System.getProperty("user.dir"));
 		System.out.println(this.getClass().getResourceAsStream("/"));
 		
-		String url = factorytest.class.getResource("/")+"Xconfig.xml";
+		String url = FactoryTest.class.getResource("/")+"Xconfig.xml";
 		System.out.println(url);
 		String path = url.substring(6, url.length());
 		System.out.println(path);

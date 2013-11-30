@@ -10,7 +10,7 @@ package com.love320.templateparser.abcd;
 
 import junit.framework.TestCase;
 
-public class Test2  extends TestCase{
+public class Txest2  extends TestCase{
 	public void teset2(){
 		AgoB agob = new AgoB();
 	}
