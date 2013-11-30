@@ -5,7 +5,7 @@
  * 
  * Founder admin@love320.com
  */
-package com.love320.templateparser;
+package com.love320.templateparser.abcd;
 
 /** 
  * @ClassName: AgoB 
@@ -14,9 +14,18 @@ package com.love320.templateparser;
  * @date 2012-4-15 下午03:38:39 
  *  
  */
-public class BgoA {
-	BgoA(){
+public class AgoB {
+	
+	AgoB(){
 		System.out.println("BgoA");
 	}
-	private AgoB agob = new AgoB();
+	private BgoA bgoa = new BgoA();
+	
+	public static void main(String[] strs){
+		AgoB AgoBsk = new AgoB();
+	}
+	
+	
+	
+
 }

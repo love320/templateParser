@@ -5,11 +5,12 @@
  * 
  * Founder admin@love320.com
  */
-package com.love320.templateparser;
+package com.love320.templateparser.abcd;
+
 
 import junit.framework.TestCase;
 
-public class test2  extends TestCase{
+public class Test2  extends TestCase{
 	public void teset2(){
 		AgoB agob = new AgoB();
 	}

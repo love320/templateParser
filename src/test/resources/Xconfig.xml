@@ -24,9 +24,9 @@
     
     <!-- 以下为测试用 -->
 
-	<bean id="test2" class="test.test2"></bean>
+	<bean id="test2" class="com.love320.templateparser.abcd.Test2"></bean>
 	
-	<bean id="a" class="test.A">
+	<bean id="a" class="com.love320.templateparser.abcd.A">
 		<property name="c">
 			<ref bean="cc" />
 		</property>
@@ -45,17 +45,17 @@
         </property>
 	</bean>
 	
-	<bean id="acateols" class="test.Acateols"></bean>
+	<bean id="acateols" class="com.love320.templateparser.abcd.Acateols"></bean>
 	
-	<bean id="b" class="test.B"  scope="prototype">
+	<bean id="b" class="com.love320.templateparser.abcd.B"  scope="prototype">
 		<property name="c">
 			<ref bean="cc" />
 		</property>
 	</bean>
 	
-	<bean id="cc" class="test.C"  scope="singleton" /> <!-- prototype -->
+	<bean id="cc" class="com.love320.templateparser.abcd.C"  scope="singleton" /> <!-- prototype -->
 	
-	<bean id="csdsc" class="test.C"  scope="prototype" /> <!-- prototype -->
+	<bean id="csdsc" class="com.love320.templateparser.abcd.C"  scope="prototype" /> <!-- prototype -->
 	
 	<bean id="error" class="test.error"  scope="singleton" /> <!-- prototype -->
    

@@ -110,10 +110,9 @@ public class LabelBeanDaoImpl implements LabelBeanDao {
 	//写入配置并保存
 	private boolean XMLWriter(){
 		try {
-			URI configURI = new URI(configPath);//实例化文件对象
 			OutputFormat format = OutputFormat.createPrettyPrint();//格式化
 			format.setEncoding("UTF-8");//设置编码
-			XMLWriter output = new XMLWriter(new FileWriter(new File(configURI)),format);//写入操作对象
+			XMLWriter output = new XMLWriter(new FileWriter(new File(configPath)),format);//写入操作对象
 			output.write(DOCROOT.getDocument());//写入
 			output.close();//关闭对象
 			
@@ -121,11 +120,7 @@ public class LabelBeanDaoImpl implements LabelBeanDao {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (URISyntaxException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
-		
 		return false;
 	}
 

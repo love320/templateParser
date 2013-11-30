@@ -16,6 +16,7 @@ import java.util.Map;
 
 import junit.framework.TestCase;
 
+import com.love320.templateparser.abcd.A;
 import com.love320.templateparser.factory.AppFactory;
 import com.love320.templateparser.factory.Factory;
 import com.love320.templateparser.factory.entity.LabelBean;
@@ -163,7 +164,7 @@ public class factorytest extends TestCase {
 		
 		SystemMap.DATA.put("zhangdi", "中国人>.s ");
 		
-		String temp = templateProcess.get(new File("").getAbsolutePath()+"/target/classes/homepage.htm",SystemMap.DATA);
+		String temp = templateProcess.get(AppPath.path()+"homepage.htm",SystemMap.DATA);
 		System.out.println(temp);
 		
 		//factory.getbean("error");
@@ -172,7 +173,7 @@ public class factorytest extends TestCase {
 	
 	public void testTheMap(){
 		AppFactory appfactory = AppFactory.getAppFactory();
-		appfactory.setConPath("Xconfig.xml",null);//指定配置文件
+		//appfactory.setConPath("Xconfig.xml",null);//指定配置文件
 		Factory factory = appfactory.getFactory();
 		TemplateProcess templateProcess = (TemplateProcess)factory.getbean("templateProcess");
 		Map themap = new HashMap<String,Object>();
