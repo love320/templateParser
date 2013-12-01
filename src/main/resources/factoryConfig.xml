@@ -3,19 +3,10 @@
 <beans>
     <description>factory</description>
     
-    <bean id="factory" >
-    	<property name="cache">
-			<ref bean="cache" />
-		</property>
-    </bean>
-    
     <bean id="factoryService" class="com.love320.templateparser.factory.impl.FactoryServiceImpl"></bean>
     
     <!-- 工厂缓存 -->
     <bean id="cache" class="com.love320.templateparser.cache.impl.SysCache"></bean>
-    
-    <bean id="ehcacheFactory" class="com.love320.templateparser.cache.impl.EhcacheFactory"></bean>
-    
     <!-- bean工厂 -->
     <bean id="beanfactory" class="com.love320.templateparser.factory.impl.BeanFactoryCacheImpl">
     	<property name="cache">
@@ -91,6 +82,7 @@
 	<bean id="testAction" class="com.love320.templateparser.label.action.TestAction"  scope="singleton" /> <!-- prototype -->
 	
 	<bean id="testAbsAction" class="com.love320.templateparser.label.action.TestAbsAction"  scope="prototype" /> <!-- prototype -->
-	 <!-- Label bean end -->
+	
+	<!-- Label bean end -->
    
 </beans>

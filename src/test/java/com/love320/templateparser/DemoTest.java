@@ -26,6 +26,19 @@ public class DemoTest extends TestCase {
 	}
 	
 	/**
+	 * 定义标签 类
+	 */
+	public void testLabelAction(){
+		AppFactory appfactory = AppFactory.getAppFactory();
+		appfactory.setConPath("Xconfig.xml");//指定配置文件
+		Factory factory = appfactory.getFactory();
+		TemplateProcess tp = (TemplateProcess)factory.getbean("templateProcess");
+		String temp = tp.get(dir+"Label.txt");
+		System.out.println(temp);
+	}
+	
+	
+	/**
 	 * Helloworld 演示
 	 */
 	public void testHelloworld(){
@@ -50,13 +63,11 @@ public class DemoTest extends TestCase {
 	 * 添加 全局参数
 	 */
 	public void testSystemMap(){
-		SystemMap.DATA.put("over", "参数A ");
+		SystemMap.DATA.put("over", "参数A");
 		TemplateProcess tp = templateProcess();
 		String temp = tp.get(dir+"SystemMap.txt");
 		System.out.println(temp);
 	}
-	
-	
 	
 
 }

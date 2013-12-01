@@ -23,11 +23,8 @@ public class TestAbsAction extends AbstractLabelAction {
 
 	@Override
 	public Map exec(Map renderMap, Map systemMap) {
-		
 		System.out.println(">>通过>"+renderMap);
-		
-		return super.exec(renderMap, systemMap);
+		return renderMap;
 	}
 
-	
 }

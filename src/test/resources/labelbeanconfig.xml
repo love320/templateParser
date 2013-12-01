@@ -25,6 +25,13 @@
     	<note>说明书</note>
     </label>
     
+    <label name="定义标签">
+    	<parameters><![CDATA[{}]]></parameters>
+    	<template><![CDATA[定义标签模板内容]]></template>
+    	<bean>buLabel</bean>
+    	<note>说明书</note>
+    </label>
+    
     <!-- demo end -->
     
     <label name="网站名称">

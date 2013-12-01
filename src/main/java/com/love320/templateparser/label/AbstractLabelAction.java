@@ -25,9 +25,12 @@ public abstract class AbstractLabelAction implements LabelAction {
 		return exec(renderMap,systemMap);//处理业务管理数据并返回数据
 	}
 	
-	//处理业务
-	public Map exec(Map renderMap,Map systemMap){
-		return renderMap;
+	@Override
+	public String template(String tem, Map<String, Object> data) {
+		return tem;
 	}
+	
+	//处理业务
+	protected abstract Map exec(Map renderMap,Map systemMap);
 	
 }

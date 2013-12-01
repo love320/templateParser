@@ -17,5 +17,6 @@ import java.util.Map;
  *  处理标签类action
  */
 public interface LabelAction {
-	public Map<String,Object> action(Map<String,Object> data);
+	public Map<String,Object> action(Map<String,Object> data); //处理数据
+	public String template(String tem,Map<String,Object> data); //处理模板
 }

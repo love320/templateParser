@@ -173,7 +173,7 @@ public class FactoryTest extends TestCase {
 	
 	public void testTheMap(){
 		AppFactory appfactory = AppFactory.getAppFactory();
-		//appfactory.setConPath("Xconfig.xml",null);//指定配置文件
+		appfactory.setConPath("Xconfig.xml");//指定配置文件
 		Factory factory = appfactory.getFactory();
 		TemplateProcess templateProcess = (TemplateProcess)factory.getbean("templateProcess");
 		Map themap = new HashMap<String,Object>();

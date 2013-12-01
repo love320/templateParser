@@ -51,16 +51,16 @@ public class LabelProcessImpl implements LabelProcess {
 	public String get(String labelName,Map messageMap) {
 		LabelBean labelBean = labelBeanFactory.get(labelName);//以标签名获取标签信息对象装载体
 		LabelAction labelAction = (LabelAction)factoryService.getbean(labelBean.getBean());//获取标签处理对象
-		Map<String, Object> data = new HashMap<String, Object>();
 		try {
 			JSONObject jsonbject = new JSONObject(labelBean.getParameters());//获取配置文件参数
 			messageMap.putAll(jsonbject.getMap());//获取标签配置文件数据map并加入
-			messageMap.put("systemMap", SystemMap.DATA);//加入系统数据map
-			data = labelAction.action(messageMap);//标签处理后获取的数据map
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
-		return synthesis.process(data, labelBean.getTemplate());
+		messageMap.put("systemMap", SystemMap.DATA);//加入系统数据map
+		Map<String, Object> data = labelAction.action(messageMap);//标签处理后获取的数据map
+		String template = labelAction.template(labelBean.getTemplate(),data);//标签处理后获取的模板信息
+		return synthesis.process(data, template);
 	}
 
 }

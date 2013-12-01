@@ -29,4 +29,9 @@ public class TestAction implements LabelAction {
 		return data;
 	}
 
+	@Override
+	public String template(String tem, Map<String, Object> data) {
+		return tem;
+	}
+
 }
