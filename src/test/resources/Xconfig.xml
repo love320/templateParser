@@ -1,25 +1,14 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <!-- 扩展配置文件, 默认继承系统配置文件  -->
 <beans>
+
+	<bean id="factoryService" class="com.love320.templateparser.factory.impl.FactoryServiceImpl"></bean>
     <!-- 工厂缓存 -->
     <bean id="cache" class="com.love320.templateparser.cache.impl.SysCache"></bean>
-
-	<bean id="labelProcess" class="com.love320.templateparser.label.impl.LabelProcessImpl" >
-		<property name="labelBeanFactory">
-			<ref bean="labelBeanFactory" />
-		</property>
-		<property name="factoryService">
-			<ref bean="factoryService" />
-		</property>
-		<property name="synthesis">
-			<ref bean="synthesis" />
-		</property>
-	</bean>
-    
+	<bean id="ehcacheFactory" class="com.love320.templateparser.cache.impl.EhcacheFactory"></bean>
+	
     <!-- Label bean -->
-
-
-
+	<bean id="buLabel" class="com.love320.templateparser.label.BuLabel" />
     <!-- Label bean end -->
     
     <!-- 以下为测试用 -->
