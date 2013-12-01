@@ -3,6 +3,30 @@
 <labels>
     <description>factory</description>
     
+    <!-- demo -->
+    <label name="Helloworld">
+    	<parameters><![CDATA[{"title":"Helloworld"}]]></parameters>
+    	<template><![CDATA[输出：${title}]]></template>
+    	<bean>testAction</bean>
+    	<note>说明书</note>
+    </label>
+    
+    <label name="导入参数">
+    	<parameters><![CDATA[{}]]></parameters>
+    	<template><![CDATA[参数a:${a};参数b:${b}]]></template>
+    	<bean>testAction</bean>
+    	<note>说明书</note>
+    </label>
+    
+    <label name="全局参数">
+    	<parameters><![CDATA[{}]]></parameters>
+    	<template><![CDATA[全局参数:${systemMap.over}]]></template>
+    	<bean>testAction</bean>
+    	<note>说明书</note>
+    </label>
+    
+    <!-- demo end -->
+    
     <label name="网站名称">
     	<parameters><![CDATA[{"name":"zhangdi老婆","age":19,"title":"冰迪网络"}]]></parameters>
     	<template><![CDATA[{${title}}:name:${name},liaobian:${age};www.love320.com, ${systemMap.zhangdi}]]></template>
