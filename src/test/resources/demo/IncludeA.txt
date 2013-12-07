@@ -1,0 +1,2 @@
+引用文件IncludeA.txt
+{love320:include name=IncludeB.txt /}

@@ -3,6 +3,8 @@ package com.love320.templateparser.label.impl;
 import com.love320.templateparser.factory.Factory;
 import com.love320.templateparser.label.LabelAction;
 import com.love320.templateparser.label.StrToTemplate;
+import com.love320.templateparser.util.Log;
+import com.love320.templateparser.util.MD5;
 import com.love320.templateparser.util.StringUtil;
 
 public class StrToTemplateImpl implements StrToTemplate {
@@ -27,7 +29,7 @@ public class StrToTemplateImpl implements StrToTemplate {
 	public String get(String str,String dir) {
 		String template = "";
 		for (String singStr : str.split("\r\n")) {//遍例每一条信息
-			 template += tagStrRow(singStr,dir);//分析并处理信息
+			template += tagStrRow(singStr,dir);//分析并处理信息
 		}
 		return template;
 	}
@@ -42,8 +44,9 @@ public class StrToTemplateImpl implements StrToTemplate {
 			for (String singStr : strS) {
 				if(singStr.indexOf(tagNamefoot+"}") != -1){//提取标签名
 					String[] singStrS = singStr.split(tagNamefoot+"}");
-					temstr = dataAction(singStrS[0]+" dir="+dir);//处理数据并拼接 模板文件目录路径
-					if (singStrS.length == 2) temstr = singStrS[1];
+					String actionData = dataAction(singStrS[0]+" dir="+dir);//处理数据并拼接 模板文件目录路径
+					temstr += get(actionData,dir);//深层分析模板
+					if (singStrS.length == 2) temstr += singStrS[1];
 				}else{
 					temstr = singStr;
 				}

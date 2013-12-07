@@ -1,2 +1,2 @@
-引用文件
-{love320:include name=Helloworld.txt /}
+引用文件Include
+{love320:include name=IncludeA.txt /}
