@@ -98,7 +98,11 @@
 	<bean id="testAbsAction" class="com.love320.templateparser.label.action.TestAbsAction"  scope="prototype" /> <!-- prototype -->
 	
 	<!-- 内部特殊标签 -->
-	<bean id="includeTempAction" class="com.love320.templateparser.label.action.IncludeTempAction"/>
+	<bean id="includeTempAction" class="com.love320.templateparser.label.action.IncludeTempAction">
+		<property name="fileToString">
+			<ref bean="fileToString" />
+		</property>
+	</bean>
 	
 	<!-- Label bean end -->
    

@@ -1,2 +1,2 @@
 引用文件
-{love320:include name=Label.txt /}
+{love320:include name=Helloworld.txt /}
