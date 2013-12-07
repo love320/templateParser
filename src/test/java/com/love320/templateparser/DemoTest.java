@@ -13,7 +13,7 @@ import junit.framework.TestCase;
 
 public class DemoTest extends TestCase {
 	
-	private String dir = AppPath.path()+"demo/";
+	private String dir = AppPath.path()+"demo\\";
 	
 	/**
 	 * 启动解析功能
@@ -66,6 +66,15 @@ public class DemoTest extends TestCase {
 		SystemMap.DATA.put("over", "参数A");
 		TemplateProcess tp = templateProcess();
 		String temp = tp.get(dir+"SystemMap.txt");
+		System.out.println(temp);
+	}
+	
+	/**
+	 * 特殊功能 ： 引用文件
+	 */
+	public void testInclude(){
+		TemplateProcess tp = templateProcess();
+		String temp = tp.get(dir,"Include.txt");
 		System.out.println(temp);
 	}
 	

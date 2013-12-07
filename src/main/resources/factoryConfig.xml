@@ -22,6 +22,9 @@
 		<property name="fileToString">
 			<ref bean="fileToString" />
 		</property>
+		<property name="strToTemplate">
+			<ref bean="strToTemplate" />
+		</property>
 		<property name="separation">
 			<ref bean="separation" />
 		</property>
@@ -37,6 +40,17 @@
 	</bean>
 	
 	<bean id="fileToString" class="com.love320.templateparser.io.impl.FileToStringImpl" />
+	<bean id="strToTemplate" class="com.love320.templateparser.label.impl.StrToTemplateImpl" >
+		<property name="factoryService">
+				<ref bean="factoryService" />
+		</property>
+		<property name="tagNamehead">
+			<value>love320:</value>
+		</property>
+		<property name="tagNamefoot">
+				<value>/</value>
+		</property>
+	</bean>
 	<bean id="separation" class="com.love320.templateparser.templateprocess.impl.SeparationImpl" >
 		<property name="tagNamehead">
 			<value>love320_</value>
@@ -82,6 +96,9 @@
 	<bean id="testAction" class="com.love320.templateparser.label.action.TestAction"  scope="singleton" /> <!-- prototype -->
 	
 	<bean id="testAbsAction" class="com.love320.templateparser.label.action.TestAbsAction"  scope="prototype" /> <!-- prototype -->
+	
+	<!-- 内部特殊标签 -->
+	<bean id="includeTempAction" class="com.love320.templateparser.label.action.IncludeTempAction"/>
 	
 	<!-- Label bean end -->
    

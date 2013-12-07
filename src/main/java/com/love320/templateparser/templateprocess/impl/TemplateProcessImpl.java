@@ -7,6 +7,7 @@ import java.util.Map;
 import com.love320.templateparser.factory.entity.Label;
 import com.love320.templateparser.io.FileToString;
 import com.love320.templateparser.label.LabelParser;
+import com.love320.templateparser.label.StrToTemplate;
 import com.love320.templateparser.label.XMLToLabel;
 import com.love320.templateparser.templateprocess.Separation;
 import com.love320.templateparser.templateprocess.TemplateProcess;
@@ -18,6 +19,7 @@ public class TemplateProcessImpl implements TemplateProcess {
 	
 	private FileToString fileToString ;//文件获取对象
 	private String templateDir = ""; //模板目录
+	private StrToTemplate strToTemplate;//预分析模板文件内容 
 	private Separation separation;//分离器(内容与标签分离)
 	private XMLToLabel xmlToLabel;//转换器，从xml数据格式转换为label对象
 	private LabelParser labelParser;//标签分析器
@@ -29,6 +31,10 @@ public class TemplateProcessImpl implements TemplateProcess {
 
 	public void setFileToString(FileToString fileToString) {
 		this.fileToString = fileToString;
+	}
+
+	public void setStrToTemplate(StrToTemplate strToTemplate) {
+		this.strToTemplate = strToTemplate;
 	}
 
 	public void setSeparation(Separation separation) {
@@ -43,6 +49,13 @@ public class TemplateProcessImpl implements TemplateProcess {
 		this.labelParser = labelParser;
 	}
 	
+	
+	@Override
+	public String get(String dir, String name) {
+		this.templateDir = dir;
+		return get(dir+name);
+	}
+
 	@Override
 	public String get(String path) {
 		return get(new File(path));
@@ -61,7 +74,8 @@ public class TemplateProcessImpl implements TemplateProcess {
 	@Override
 	public String get(File file,Map messageMap) {
 		String templateFileStr = fileToString.get(file);//从文件中读取内容到字符串中
-		String tempXML = separation.getXML(templateFileStr);//分离内容与标签并以xml管理，返回xml字符串
+		String template = strToTemplate.get(templateFileStr,templateDir);//预处理模板文件，使其为完整的文件
+		String tempXML = separation.getXML(template);//分离内容与标签并以xml管理，返回xml字符串
 		List<Label> labelList = xmlToLabel.get(tempXML);//从xml数据格式转换为label对象
 		labelListMessagee(labelList,messageMap);//标签集合加入信息体
 		labelList = labelParser.get(labelList);//标签分析器进行解析
