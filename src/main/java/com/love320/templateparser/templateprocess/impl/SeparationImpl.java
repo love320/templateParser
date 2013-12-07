@@ -23,8 +23,8 @@ import com.love320.templateparser.templateprocess.Separation;
  */
 public class SeparationImpl implements Separation {
 
-	private String tagNamehead = "\\{love320_";
-	private String tagNamefoot = "/}";
+	private String tagNamehead = "love320_";
+	private String tagNamefoot = "/";
 
 	public void setTagNamehead(String tagNamehead) {
 		this.tagNamehead = tagNamehead;

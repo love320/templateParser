@@ -9,8 +9,8 @@ import com.love320.templateparser.util.StringUtil;
 
 public class StrToTemplateImpl implements StrToTemplate {
 	
-	private String tagNamehead = "\\{love320:";
-	private String tagNamefoot = "/}";
+	private String tagNamehead = "love320:";
+	private String tagNamefoot = "/";
 	private Factory factoryService;//bean工厂
 	
 	public void setTagNamehead(String tagNamehead) {
