@@ -7,10 +7,7 @@
  */
 package com.love320.templateparser.util;
 
-import java.io.InputStream;
 import java.net.URL;
-
-import com.love320.templateparser.factory.AppFactory;
 
 /** 
  * @ClassName: AppPath 
