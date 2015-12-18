@@ -27,8 +27,10 @@ import org.dom4j.io.XMLWriter;
 import com.love320.templateparser.factory.entity.LabelBean;
 import com.love320.templateparser.label.LabelBeanDao;
 import com.love320.templateparser.util.AppPath;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-/** 
+ /**
  * @ClassName: LabelManagerImpl 
  * @Description: TODO
  * @author love320.com
@@ -36,6 +38,8 @@ import com.love320.templateparser.util.AppPath;
  *  
  */
 public class LabelBeanDaoImpl implements LabelBeanDao {
+
+    private final static Logger logger = LoggerFactory.getLogger(LabelBeanDaoImpl.class);
 	
 	private String configPath; //标签配置文件路径
 	private Element DOCROOT ;//标签配置文件
@@ -49,7 +53,7 @@ public class LabelBeanDaoImpl implements LabelBeanDao {
 				Document document= sax.read(this.configPath);
 				DOCROOT = document.getRootElement();
 			} catch (DocumentException e) {
-				e.printStackTrace();
+                logger.error("DocumentException",e);
 			}
 	}
 	
@@ -118,8 +122,7 @@ public class LabelBeanDaoImpl implements LabelBeanDao {
 			
 			return true;
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+            logger.error("IOException",e);
 		}
 		return false;
 	}

@@ -18,8 +18,10 @@ import com.love320.templateparser.label.LabelAction;
 import com.love320.templateparser.label.LabelProcess;
 import com.love320.templateparser.label.Synthesis;
 import com.love320.templateparser.user.bean.SystemMap;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-/** 
+ /**
  * @ClassName: LabelProcessImpl 
  * @Description: TODO
  * @author love320.com
@@ -27,6 +29,8 @@ import com.love320.templateparser.user.bean.SystemMap;
  *  
  */
 public class LabelProcessImpl implements LabelProcess {
+
+    private final static Logger logger = LoggerFactory.getLogger(LabelProcessImpl.class);
 	
 	private LabelBeanFactory labelBeanFactory;//标签对应 的信息工厂
 	private Factory factoryService;//bean工厂
@@ -55,7 +59,7 @@ public class LabelProcessImpl implements LabelProcess {
 			JSONObject jsonbject = new JSONObject(labelBean.getParameters());//获取配置文件参数
 			messageMap.putAll(jsonbject.getMap());//获取标签配置文件数据map并加入
 		} catch (JSONException e) {
-			e.printStackTrace();
+            logger.error("JSONException",e);
 		}
 		messageMap.put("systemMap", SystemMap.DATA);//加入系统数据map
 		Map<String, Object> data = labelAction.action(messageMap);//标签处理后获取的数据map

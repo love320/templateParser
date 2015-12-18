@@ -13,7 +13,7 @@ import junit.framework.TestCase;
 
 public class DemoTest extends TestCase {
 	
-	private String dir = AppPath.path()+"demo\\";
+	private String dir = AppPath.path()+"demo/";
 	
 	/**
 	 * 启动解析功能

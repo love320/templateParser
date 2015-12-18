@@ -1,9 +1,9 @@
 package com.love320.templateparser.util;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.*;
 
 /**
  * 文件读取工具
@@ -11,6 +11,8 @@ import java.io.InputStream;
  *
  */
 public class FileUtil {
+
+    private final static Logger logger = LoggerFactory.getLogger(FileUtil.class);
 
 	public static InputStream getJar(String fileName) {
 		InputStream is = AppPath.class.getResourceAsStream("/"+fileName);  
@@ -24,9 +26,9 @@ public class FileUtil {
 			fis = new FileInputStream(file);
 			return fis;
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} 
+            logger.error("FileNotFoundException", e);
+		}
 		return null;
 	}
-	
+
 }

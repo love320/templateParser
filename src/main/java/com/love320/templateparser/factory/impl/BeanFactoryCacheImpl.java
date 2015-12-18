@@ -17,8 +17,10 @@ import com.love320.templateparser.exception.FactoryException;
 import com.love320.templateparser.factory.BeanFactory;
 import com.love320.templateparser.factory.entity.BeanString;
 import com.love320.templateparser.util.Log;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-/** 
+ /**
  * @ClassName: BeanFactoryImpl 
  * @Description: TODO
  * @author love320.com
@@ -26,6 +28,8 @@ import com.love320.templateparser.util.Log;
  *  
  */
 public class BeanFactoryCacheImpl implements BeanFactory {
+
+     private final static Logger logger = LoggerFactory.getLogger(BeanFactoryCacheImpl.class);
 
 	private Element docroot ;
 	private Cache cache;
@@ -37,9 +41,9 @@ public class BeanFactoryCacheImpl implements BeanFactory {
 			try {
 				bs = action(name);
 			} catch (Exception e) {
+                logger.error("Exception",e);
 				FactoryException fe = new FactoryException(new String[]{name});
-				Log.LOGGER.warn(fe.message(), this);
-				e.printStackTrace();
+                logger.error("FactoryException",fe);
 			}
 			bs = action(name);	
 			cache.putObject(cacheKey+name, bs);
@@ -65,7 +69,7 @@ public class BeanFactoryCacheImpl implements BeanFactory {
 				//增加反射注入类 成员名和beanId
 				String[] refs = {null,null};
 				refs[0] = propertyName;
-				refs[1] =  propertyBeanNode.getText();
+				refs[1] = propertyBeanNode.getText();
 				beanString.getRefList().add(refs);
 			}
 

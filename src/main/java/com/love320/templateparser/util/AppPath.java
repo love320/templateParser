@@ -17,6 +17,7 @@ import java.net.URL;
  *  应用运行的路径
  */
 public class AppPath {
+
 	private static URL URL = AppPath.class.getResource("/");
 	
 	public static String path(){
@@ -25,9 +26,18 @@ public class AppPath {
 	
 	//APP
 	public static String APPath(){
+
 		String url = URL.toString();
-		String path = url.substring(6, url.length());
-		return path.replace('/','\\');
+        String appPath = null;
+        if(OSInfoUtil.getOSname() == EPlatform.Windows){
+            String path = url.substring(6, url.length());
+            appPath = path.replace('/','\\');
+        }
+        if(OSInfoUtil.getOSname() == EPlatform.Linux){
+            String path = url.substring(5, url.length());
+            appPath = path;
+        }
+        return appPath;
 	}
 	
 	//WEB

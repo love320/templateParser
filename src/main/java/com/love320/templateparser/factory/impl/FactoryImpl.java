@@ -15,12 +15,16 @@ import org.dom4j.Node;
 
 import com.love320.templateparser.cache.Cache;
 import com.love320.templateparser.factory.Factory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /*
  * 工厂
  * */
 
 public class FactoryImpl implements Factory {
+
+    private final static Logger logger = LoggerFactory.getLogger(FactoryImpl.class);
 
 	private Cache cache;//缓存
 	private String cacheKey = "WWW.LOVE320.COMKeyksdjfksdjglksjdfkdhsgksdjfkljsdlkfjsdlkfj>";//缓存建值(头)
@@ -51,8 +55,8 @@ public class FactoryImpl implements Factory {
 		}
 		
 	}
-	
-	//递归生成对象
+
+    //递归生成对象
 	private Object procreationXML(String beanName){
 		Node node = docroot.selectSingleNode("/beans/bean[@id='"+beanName+"']/@class");
 		Object object = null;
@@ -93,31 +97,24 @@ public class FactoryImpl implements Factory {
 							method.invoke(object, valueNode.getText());
 			            }
 					}else{
-						//System.out.println("<valueNode>"+valueNode);
+                        logger.debug("<valueNode>"+valueNode);
 					}
 				}
 			}
-		} catch (InstantiationException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (IllegalAccessException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (ClassNotFoundException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+		} catch (InstantiationException e) {
+            logger.error("InstantiationException",e);
+		} catch (IllegalAccessException e) {
+            logger.error("IllegalAccessException",e);
+		} catch (ClassNotFoundException e) {
+            logger.error("ClassNotFoundException",e);
 		} catch (SecurityException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+            logger.error("SecurityException",e);
 		} catch (NoSuchMethodException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+            logger.error("NoSuchMethodException",e);
 		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+            logger.error("IllegalArgumentException",e);
 		} catch (InvocationTargetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+            logger.error("InvocationTargetException",e);
 		}
 		
 		return object;

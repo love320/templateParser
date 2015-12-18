@@ -18,8 +18,10 @@ import org.dom4j.io.SAXReader;
 
 import com.love320.templateparser.factory.entity.Label;
 import com.love320.templateparser.label.XMLToLabel;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-/** 
+ /**
  * @ClassName: XMLToLabelImpl 
  * @Description: TODO
  * @author love320.com
@@ -27,6 +29,8 @@ import com.love320.templateparser.label.XMLToLabel;
  *  
  */
 public class XMLToLabelImpl implements XMLToLabel {
+
+    private final static Logger logger = LoggerFactory.getLogger(XMLToLabelImpl.class);
 
 	/* (non-Javadoc)
 	 * @see com.love320.templateparser.label.XMLToLabel#get(java.lang.String)
@@ -47,16 +51,16 @@ public class XMLToLabelImpl implements XMLToLabel {
 				labeList.add(label);//加入列表中
 				/*
 				if(type.equals("label")){//标签类型
-					System.out.println("label:"+element.getText());
+					logger.info("label:"+element.getText());
 				}else if(type.equals("symbols")){//符号类型
-					System.out.println("symbols:"+element.getText());
+					logger.info("symbols:"+element.getText());
 				}else{//默认字符串
-					System.out.println(element.getText());
+					logger.info(element.getText());
 				}
 				*/
 			}
 		} catch (DocumentException e) {
-			e.printStackTrace();
+            logger.error("DocumentException",e);
 		}
 		return labeList;
 	}

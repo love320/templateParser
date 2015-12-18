@@ -16,18 +16,13 @@ import com.love320.templateparser.templateprocess.TemplateProcess;
  * 模板核心处理器
  * */
 public class TemplateProcessImpl implements TemplateProcess {
-	
+
 	private FileToString fileToString ;//文件获取对象
-	private String templateDir = ""; //模板目录
 	private StrToTemplate strToTemplate;//预分析模板文件内容 
 	private Separation separation;//分离器(内容与标签分离)
 	private XMLToLabel xmlToLabel;//转换器，从xml数据格式转换为label对象
 	private LabelParser labelParser;//标签分析器
-	
 
-	public void setTemplateDir(String templateDir) {
-		this.templateDir = templateDir;
-	}
 
 	public void setFileToString(FileToString fileToString) {
 		this.fileToString = fileToString;
@@ -49,38 +44,67 @@ public class TemplateProcessImpl implements TemplateProcess {
 		this.labelParser = labelParser;
 	}
 	
-	
-	@Override
-	public String get(String dir, String name) {
-		this.templateDir = dir;
-		return get(dir+name);
-	}
+
+    @Override
+    public String get(File file) {
+        return get(file,null);
+    }
 
 	@Override
 	public String get(String path) {
 		return get(new File(path));
 	}
 
-	@Override
-	public String get(File file) {
-		return get(file,null);
-	}
+    @Override
+    public String get(String dir, File file) {
+        return get(dir,file,null);
+    }
+
+    @Override
+    public String get(String dir, String name) {
+        return get(dir,new File(dir+name));
+    }
 
 	@Override
 	public String get(String path,Map messageMap) {
 		return get(new File(path),messageMap);
 	}
 
-	@Override
-	public String get(File file,Map messageMap) {
+    @Override
+    public String get(String dir, String name, Map messageMap) {
+        return get(dir,new File(dir+name),messageMap);
+    }
+
+    @Override
+    public String get(File file, Map messageMap) {
+        return get(null,file,messageMap);
+    }
+
+    @Override
+	public String get(String dirPath,File file,Map messageMap) {
 		String templateFileStr = fileToString.get(file);//从文件中读取内容到字符串中
-		String template = strToTemplate.get(templateFileStr,templateDir);//预处理模板文件，使其为完整的文件
-		String tempXML = separation.getXML(template);//分离内容与标签并以xml管理，返回xml字符串
-		List<Label> labelList = xmlToLabel.get(tempXML);//从xml数据格式转换为label对象
-		labelListMessagee(labelList,messageMap);//标签集合加入信息体
-		labelList = labelParser.get(labelList);//标签分析器进行解析
-		return labelSToTemplate(labelList);//解析后的标签合并成内容
+        return getByText(dirPath,templateFileStr,messageMap);
 	}
+
+    @Override
+    public String getByText(String text) {
+        return getByText(text,null);
+    }
+
+    @Override
+    public String getByText(String text, Map messageMap) {
+        return getByText(null,text,messageMap);
+    }
+
+    @Override
+    public String getByText(String dirPath, String text, Map messageMap) {
+        String template = strToTemplate.get(text,dirPath);//预处理模板文件，使其为完整的文件
+        String tempXML = separation.getXML(template);//分离内容与标签并以xml管理，返回xml字符串
+        List<Label> labelList = xmlToLabel.get(tempXML);//从xml数据格式转换为label对象
+        labelListMessagee(labelList,messageMap);//标签集合加入信息体
+        labelList = labelParser.get(labelList);//标签分析器进行解析
+        return labelSToTemplate(labelList);//解析后的标签合并成内容
+    }
 	
 	//解析后的标签合并成内容
 	private String labelSToTemplate(List<Label> labelList){

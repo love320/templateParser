@@ -8,8 +8,12 @@ import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 
 import com.love320.templateparser.io.FileToString;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class FileToStringImpl implements FileToString {
+
+    private final static Logger logger = LoggerFactory.getLogger(FileToStringImpl.class);
 
 	@Override
 	public String get(String path) {
@@ -36,11 +40,9 @@ public class FileToStringImpl implements FileToString {
         //tmpread.close();
         
         } catch (UnsupportedEncodingException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
+            logger.error("UnsupportedEncodingException",e);
         } catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+            logger.error("IOException",e);
 		}
         
         return fileContent;

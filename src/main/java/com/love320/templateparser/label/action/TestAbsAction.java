@@ -11,6 +11,8 @@ import java.util.Map;
 
 import com.love320.templateparser.label.AbstractLabelAction;
 import com.love320.templateparser.user.bean.SystemMap;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @ClassName: TestAbsAction
@@ -21,9 +23,11 @@ import com.love320.templateparser.user.bean.SystemMap;
  */
 public class TestAbsAction extends AbstractLabelAction {
 
+    private final static Logger logger = LoggerFactory.getLogger(TestAbsAction.class);
+
 	@Override
 	public Map exec(Map renderMap, Map systemMap) {
-		System.out.println(">>通过>"+renderMap);
+        logger.debug(">>通过>"+renderMap);
 		return renderMap;
 	}
 

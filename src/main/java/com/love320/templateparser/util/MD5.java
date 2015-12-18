@@ -7,6 +7,9 @@
  */
 package com.love320.templateparser.util;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.security.MessageDigest;
 
 /**
@@ -17,6 +20,10 @@ import java.security.MessageDigest;
  * 
  */
 public class MD5 {
+
+    private final static Logger logger = LoggerFactory.getLogger(MD5.class);
+
+
 	public final static String md5string(String s) {
 		char hexDigits[] = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
 				'A', 'B', 'C', 'D', 'E', 'F' };
@@ -35,7 +42,7 @@ public class MD5 {
 			}
 			return new String(str);
 		} catch (Exception e) {
-			e.printStackTrace();
+            logger.error("Exception",e);
 			return null;
 		}
 	}

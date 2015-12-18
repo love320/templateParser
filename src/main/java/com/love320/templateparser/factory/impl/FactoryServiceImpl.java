@@ -9,8 +9,9 @@ package com.love320.templateparser.factory.impl;
 
 import com.love320.templateparser.factory.AppFactory;
 import com.love320.templateparser.factory.Factory;
+import org.springframework.context.ApplicationContext;
 
-/** 
+ /**
  * @ClassName: FactoryServiceImpl 
  * @Description: TODO
  * @author love320.com
@@ -29,4 +30,5 @@ public class FactoryServiceImpl implements Factory {
 		return factory.getbean(beanName);
 	}
 
-}
+
+ }

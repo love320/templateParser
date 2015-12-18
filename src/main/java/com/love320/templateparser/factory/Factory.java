@@ -10,5 +10,5 @@ package com.love320.templateparser.factory;
 public interface Factory {
 	
 	Object getbean(String beanName);
-	
+
 }

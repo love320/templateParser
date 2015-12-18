@@ -16,6 +16,8 @@ import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @ClassName: ConfigBeanXML
@@ -24,6 +26,8 @@ import org.dom4j.io.SAXReader;
  * @date 2012-6-16 下午05:21:32 合并多个配置文件
  */
 public class ConfigBeanXML {
+
+    private final static Logger logger = LoggerFactory.getLogger(ConfigBeanXML.class);
 
 	public static Element action(String config, String... paths) {
 		Document document = null;
@@ -80,7 +84,7 @@ public class ConfigBeanXML {
 		try {
 			document = sax.read(is);// 读取
 		} catch (DocumentException e) {
-			e.printStackTrace();
+            logger.error("DocumentException",e);
 		}
 		return document;
 	}

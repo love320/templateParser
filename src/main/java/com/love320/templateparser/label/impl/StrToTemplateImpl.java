@@ -29,7 +29,7 @@ public class StrToTemplateImpl implements StrToTemplate {
 	public String get(String str,String dir) {
 		String template = "";
 		for (String singStr : str.split("\r\n")) {//遍例每一条信息
-			template += tagStrRow(singStr,dir);//分析并处理信息
+			template += tagStrRow(singStr,dir)+"\r\n";//分析并处理信息
 		}
 		return template;
 	}

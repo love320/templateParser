@@ -134,6 +134,7 @@ public class LoggerImpl implements Logger {
 		// TODO Auto-generated method stub
 		String className = object.getClass().getName();
 		System.out.println(className+":"+msg);
+
 	}
 
 	/* (non-Javadoc)

@@ -20,6 +20,8 @@ import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
 import com.love320.templateparser.factory.Factory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /*
  * 工厂
@@ -27,6 +29,8 @@ import com.love320.templateparser.factory.Factory;
 
 
 public class FactoryBakImpl implements Factory {
+
+    private final static Logger logger = LoggerFactory.getLogger(FactoryBakImpl.class);
 
 	/*单例化
 	 * */
@@ -73,9 +77,9 @@ public class FactoryBakImpl implements Factory {
 		}
 		
 	}
-	
-	
-	//递归生成对象
+
+
+    //递归生成对象
 	private Object procreation(String beanName){
 		
 		String objectclassname = configGetClassName(beanName);
@@ -86,11 +90,11 @@ public class FactoryBakImpl implements Factory {
 				beanObject = Class.forName(objectclassname).newInstance();
 			}
 		} catch (InstantiationException e) {
-			e.printStackTrace();
+            logger.error("InstantiationException",e);
 		} catch (IllegalAccessException e) {
-			e.printStackTrace();
+            logger.error("IllegalAccessException",e);
 		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
+            logger.error("ClassNotFoundException",e);
 		}
 		return beanObject;
 	}
@@ -105,8 +109,7 @@ public class FactoryBakImpl implements Factory {
 		try {
 			prop.load(in);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+            logger.error("IOException",e);
 		}
 	}
 	
@@ -116,7 +119,7 @@ public class FactoryBakImpl implements Factory {
 			Document document= sax.read(configPath);
 			docroot = document.getRootElement();
 		} catch (DocumentException e) {
-			e.printStackTrace();
+            logger.error("DocumentException",e);
 		}
 	}
 	
@@ -131,14 +134,11 @@ public class FactoryBakImpl implements Factory {
 				object = Class.forName(element.attributeValue("class")).newInstance();
 				
 			} catch (InstantiationException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+                logger.error("InstantiationException",e);
 			} catch (IllegalAccessException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+                logger.error("IllegalAccessException",e);
 			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+                logger.error("ClassNotFoundException",e);
 			}
 		}
 		}

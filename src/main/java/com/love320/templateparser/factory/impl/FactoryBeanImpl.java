@@ -17,12 +17,16 @@ import com.love320.templateparser.factory.Factory;
 import com.love320.templateparser.factory.entity.BeanString;
 import com.love320.templateparser.util.Log;
 import com.love320.templateparser.util.MD5;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /*
  * 工厂
  * */
 
 public class FactoryBeanImpl implements Factory {
+
+    private final static Logger logger = LoggerFactory.getLogger(FactoryBeanImpl.class);
 
 	private Cache cache;// 缓存
 	private String cacheKey = "WWW.LOVE320.COMKeyksdjfksdjglksjdfkdhsgksdjfkljsdlkfj<FactoryBean>:";// 缓存建值(头)
@@ -52,47 +56,42 @@ public class FactoryBeanImpl implements Factory {
 				Method method = beanFactory.getClass().getMethod("setDocroot",Element.class);
 				method.invoke(beanFactory, docroot);
 			} catch (IllegalArgumentException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+                logger.error("IllegalArgumentException",e);
 			} catch (IllegalAccessException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+                 logger.error("IllegalAccessException",e);
 			} catch (InvocationTargetException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+                 logger.error("InvocationTargetException",e);
 			} catch (SecurityException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+                 logger.error("SecurityException",e);
 			} catch (NoSuchMethodException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+                 logger.error("NoSuchMethodException",e);
 			}
 		return true;
 	}
 
-	@Override
-	public Object getbean(String beanName) {
-		if(beanName == null) return null;//beanName 失效
-		
-		Object object = cache.getObject(cacheKey + beanName);// 从缓存只取对象
-			if (object == null) {
-				synchronized(this){
-					object = cache.getObject(cacheKey + beanName);
-					if(object == null){
-						BeanString beanString = beanFactory.getBeanString(beanName);//获取bean信息对象
-						object = procreationBean(beanString);// 以beanString信息对象生产实例对象
-						if((beanString != null)&&(beanString.getScope() != null)&&(beanString.getScope().equals("prototype"))){
-							//多实例化对象，不加入缓存
-						}else{
-							cache.putObject(cacheKey + beanName, object);// 放入缓存中
-						}
-					}
-			}
-		}
-		return object;
-	}
 
-	// 递归生成对象
+    @Override
+    public Object getbean(String beanName) {
+        if(beanName == null) return null;//beanName 失效
+        Object object = cache.getObject(cacheKey + beanName);// 从缓存只取对象
+        if (object == null) {
+            synchronized(this){
+                object = cache.getObject(cacheKey + beanName);
+                if(object == null){
+                    BeanString beanString = beanFactory.getBeanString(beanName);//获取bean信息对象
+                    object = procreationBean(beanString);// 以beanString信息对象生产实例对象
+                    if((beanString != null)&&(beanString.getScope() != null)&&(beanString.getScope().equals("prototype"))){
+                        //多实例化对象，不加入缓存
+                    }else{
+                        cache.putObject(cacheKey + beanName, object);// 放入缓存中
+                    }
+                }
+            }
+        }
+        return object;
+    }
+
+    // 递归生成对象
 	private Object procreationBean(BeanString beanString) {
 		Object object = null;
 		try {
@@ -144,26 +143,20 @@ public class FactoryBeanImpl implements Factory {
 				 }
 			}
 
-		} catch (InstantiationException e1) {
-			e1.printStackTrace();
-		} catch (IllegalAccessException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (ClassNotFoundException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+		} catch (InstantiationException e) {
+            logger.error("InstantiationException",e);
+		} catch (IllegalAccessException e) {
+            logger.error("IllegalAccessException",e);
+		} catch (ClassNotFoundException e) {
+            logger.error("ClassNotFoundException",e);
 		} catch (SecurityException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+            logger.error("SecurityException",e);
 		} catch (NoSuchMethodException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+            logger.error("NoSuchMethodException",e);
 		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+            logger.error("IllegalArgumentException",e);
 		} catch (InvocationTargetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+            logger.error("InvocationTargetException",e);
 		}
 
 		return object;

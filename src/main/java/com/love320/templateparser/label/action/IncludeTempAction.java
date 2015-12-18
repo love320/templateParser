@@ -12,7 +12,7 @@ import com.love320.templateparser.label.AbsTemplateLabelAction;
  *
  */
 public class IncludeTempAction extends AbsTemplateLabelAction {
-	
+
 	private FileToString fileToString ;//文件获取对象
 
 	public void setFileToString(FileToString fileToString) {

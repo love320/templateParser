@@ -15,8 +15,12 @@ import com.love320.templateparser.factory.entity.BeanString;
 import com.love320.templateparser.factory.impl.FactoryBeanImpl;
 import com.love320.templateparser.util.ConfigBeanXML;
 import com.love320.templateparser.util.FileUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class AppFactory {
+
+    private final static Logger logger = LoggerFactory.getLogger(AppFactory.class);
 	
 	/*单实例化
 	 * */
@@ -45,7 +49,7 @@ public class AppFactory {
 			Document document= sax.read(FileUtil.get(conPath[0]));
 			DOCROOT = document.getRootElement();
 		} catch (DocumentException e) {
-			e.printStackTrace();
+            logger.error("DocumentException",e);
 		}
 	}
 

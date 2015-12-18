@@ -16,8 +16,10 @@ import com.love320.templateparser.label.Synthesis;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-/** 
+ /**
  * @ClassName: SynthesisFreeMarker 
  * @Description: TODO
  * @author love320.com
@@ -25,6 +27,8 @@ import freemarker.template.TemplateException;
  *  
  */
 public class SynthesisFreeMarker implements Synthesis {
+
+    private final static Logger logger = LoggerFactory.getLogger(SynthesisFreeMarker.class);
 
 	/* (non-Javadoc)
 	 * @see com.love320.templateparser.templateprocess.Synthesis#get(java.lang.Object, java.lang.String)
@@ -43,12 +47,10 @@ public class SynthesisFreeMarker implements Synthesis {
 		     template.process(object, writer);    
 		     return writer.toString();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+            logger.error("IOException",e);
 		} catch (TemplateException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}    
+            logger.error("TemplateException",e);
+		}
 		return null;
 	}
 
