@@ -47,10 +47,17 @@ public class LabelBeanDaoImpl implements LabelBeanDao {
 	public void setConfigPath(String confpath) {
 			
 			this.configPath = appPath(confpath);//应用目录
-	
+
+            //检测文件有效性
+            File labelFile = new File(this.configPath);
+            if(!labelFile.exists()) {
+                logger.warn("Label Bean Dao read config file null the not found :"+confpath);
+                return;
+            }
+
 			SAXReader sax = new SAXReader();
 			try {
-				Document document= sax.read(this.configPath);
+				Document document= sax.read(labelFile);
 				DOCROOT = document.getRootElement();
 			} catch (DocumentException e) {
                 logger.error("DocumentException",e);

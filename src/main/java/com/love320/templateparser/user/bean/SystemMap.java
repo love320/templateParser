@@ -23,12 +23,12 @@ import com.love320.templateparser.util.MD5;
 public class SystemMap {
 	public static Map DATA = new HashMap<String, Object>();
 	private static String KEYNAME = "love320.com.ksdjfwoieicxnbc,lksdjfow.SystemMap";
-	
+
 	public static Object get(String key){
-		return DATA.get(MD5.md5string(KEYNAME+key));
+		return DATA.get(key);
 	}
 	
 	public static void put(String key,Object object){
-		DATA.put(MD5.md5string(KEYNAME+key), object);
+		DATA.put(key, object);
 	}
 }

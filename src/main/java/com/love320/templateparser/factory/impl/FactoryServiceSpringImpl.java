@@ -30,7 +30,7 @@ public class FactoryServiceSpringImpl implements Factory {
       */
      private ApplicationContext applicationContext = null;
 
-     private final static String tLabels[] ={"includeTempAction","templateProcess"};
+     private final static String tLabels[] ={"includeTempAction","templateProcess","labelBeanFactory"};
 
      @Override
      public Object getbean(String beanName) {
