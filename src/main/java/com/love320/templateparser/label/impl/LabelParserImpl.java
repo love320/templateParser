@@ -35,6 +35,7 @@ public class LabelParserImpl implements LabelParser {
 	@Override
 	public Label get(Label label) {//标签分析器
 		if(label.getType().equals("label")){//标签类型
+            //label.getTemplat() 内容为,之前查找到{前缀_???? /}的问号内容,现在直接使用普通标签转化解析后的详细内容
 			String bodycontent = labelProcess.get(label.getTemplate(),label.getMessageMap());//传标签名，返回标签解析后的内容
 			label.setTemplate(bodycontent);//设置解析后的内容
 		}
